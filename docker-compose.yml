@@ -1,0 +1,22 @@
+services:
+  app:
+    build: .
+    ports:
+      - 80:80
+    volumes:
+      - .:/www:delegated
+
+  db:
+    image: percona:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-secret}
+      MYSQL_DATABASE: sim_db
+      MYSQL_USER: john
+      MYSQL_PASSWORD: ${MYSQL_ROOT_PASSWORD:-secret}
+    volumes:
+      - mysql-data:/var/lib/mysql:rw
+    ports:
+      - 3306:3306
+
+volumes:
+  mysql-data:
