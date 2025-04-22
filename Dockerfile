@@ -16,4 +16,4 @@ COPY --chown=php:nginx binaries /usr/local/bin
 
 RUN composer update && composer install
 
-RUN npm install && rm -rf node_modules
+RUN npm install && && npm run prod && rm -rf node_modules
